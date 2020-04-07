@@ -1,0 +1,136 @@
+openapi: 3.0.1
+info:
+  title: Sri Lanka HPB Covid-19 Report API
+  description: 'API provides the current real time situation of the COVID-19 patients reported in Sri Lanka'
+  version: '1.0'
+servers:
+  - url: 'https://hpb.health.gov.lk'
+paths:
+  /api/get-current-statistical:
+    get:
+      tags:
+        - Statistics
+      summary: 'Get current real time situation of the COVID-19 patients reported in Sri Lanka'
+      description: 'Get current real time situation of the COVID-19 patients reported in Sri Lanka'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Success'
+                  data:
+                    type: object
+                    properties:
+                      update_date_time:
+                        type: string
+                        example: "2020-03-22 11:39:58"
+                      local_new_cases:
+                        type: integer
+                        example: 2
+                      local_total_cases:
+                        type: integer
+                        example: 10
+                      local_total_number_of_individuals_in_hospitals:
+                        type: integer
+                        example: 10
+                      local_deaths:
+                        type: integer
+                        example: 0
+                      local_new_deaths:
+                        type: integer
+                        example: 0
+                      local_recovered:
+                        type: integer
+                        example: 0                      
+                      global_new_cases:
+                        type: integer
+                        example: 0
+                      global_total_cases:
+                        type: integer
+                        example: 0
+                      global_deaths:
+                        type: integer
+                        example: 0
+                      global_new_deaths:
+                        type: integer
+                        example: 0
+                      global_recovered:
+                        type: integer
+                        example: 0
+                      stationList:
+                        type: array
+                        items:
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            hospital_id:
+                              type: integer
+                              example: 1
+                            cumulative_local:
+                              type: integer
+                              example: 1
+                            cumulative_foreign:
+                              type: integer
+                              example: 1
+                            treatment_local:
+                              type: integer
+                              example: 1
+                            treatment_foreign:
+                              type: integer
+                              example: 1
+                            created_at:
+                              type: integer
+                              example: 1
+                            updated_at:
+                              type: integer
+                              example: 1
+                            deleted_at:
+                              type: integer
+                              example: 1
+                            cumulative_total:
+                              type: integer
+                              example: 1
+                            treatment_total:
+                              type: integer
+                              example: 1
+                            hospital:
+                              type: object
+                              properties:
+                                id: 
+                                  type: integer
+                                  example: 1
+                                name:
+                                  type: string
+                                  example: "National Institute of Infectious Diseases"
+                                name_si:
+                                  type: string
+                                  example: "බෝවන රෝග පිළිබඳ ජාතික ආයතනය"
+                                name_ta:
+                                  type: string
+                                  example: "தேசிய தொற்று நோயியல் நிறுவனம்"
+                                created_at:
+                                  type: string
+                                  example: "2020-03-20 01:54:12"
+                                updated_at:
+                                  type: string
+                                  example: "2020-03-20 01:54:12"
+                                deleted_at:
+                                  type: string
+                                  example: "2020-03-20 01:54:12"
+                                
+                      
+        '400':
+          description: Invalid language code supplied
+          content: {}
+        '404':
+          description: Station list not found!
+          content: {}
